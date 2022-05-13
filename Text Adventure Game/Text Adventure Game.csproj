@@ -1,0 +1,32 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <RootNamespace>Text_Adventure_Game</RootNamespace>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="aaa.png" />
+    <None Remove="game_menu_background.jpg" />
+    <None Remove="settings.png" />
+    <None Remove="wood1.jpg" />
+    <None Remove="wood2.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Text adventure maker\Text adventure maker.csproj" />
+    <ProjectReference Include="..\Text adventure player\Text adventure player.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="resources\wood1.jpg" />
+    <Resource Include="resources\settings.png" />
+    <Resource Include="resources\text_adventure_zone.png" />
+    <Resource Include="resources\game_menu_background.jpg" />
+    <Resource Include="resources\wood2.jpg" />
+  </ItemGroup>
+
+</Project>
