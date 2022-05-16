@@ -13,16 +13,18 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Text_Adventure_Game
+namespace Text_adventure_maker
 {
     /// <summary>
-    /// Logique d'interaction pour UserControl_checkbox.xaml
+    /// Logique d'interaction pour UserControl_GameMaker.xaml
     /// </summary>
-    public partial class UserControl_checkbox : UserControl
+    public partial class UserControl_GameMaker : UserControl
     {
-        public UserControl_checkbox()
+        public UserControl_GameMaker()
         {
             InitializeComponent();
+
+            Grid_main.Children.Add(new UserControl_ProjectLoaderAndCreater());
         }
     }
 }

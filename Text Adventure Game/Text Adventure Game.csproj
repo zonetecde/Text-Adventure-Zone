@@ -10,23 +10,32 @@
 
   <ItemGroup>
     <None Remove="aaa.png" />
+    <None Remove="checkbox_checked.png" />
+    <None Remove="checkbox_unchecked.png" />
     <None Remove="game_menu_background.jpg" />
+    <None Remove="red-close-icon-40.png" />
     <None Remove="settings.png" />
     <None Remove="wood1.jpg" />
     <None Remove="wood2.jpg" />
+    <None Remove="wood3.jpg" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Text adventure maker\Text adventure maker.csproj" />
-    <ProjectReference Include="..\Text adventure player\Text adventure player.csproj" />
+    <ProjectReference Include="..\ClassesZone\ClassesZone.csproj" />
+    <ProjectReference Include="..\Text adventure maker\Text_adventure_maker.csproj" />
+    <ProjectReference Include="..\Text adventure player\Text_adventure_player.csproj" />
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="resources\close.png" />
+    <Resource Include="Utilities\CustomUIElement\resources\checkbox_checked.png" />
+    <Resource Include="Utilities\CustomUIElement\resources\checkbox_unchecked.png" />
     <Resource Include="resources\wood1.jpg" />
     <Resource Include="resources\settings.png" />
     <Resource Include="resources\text_adventure_zone.png" />
     <Resource Include="resources\game_menu_background.jpg" />
     <Resource Include="resources\wood2.jpg" />
+    <Resource Include="resources\wood3.jpg" />
   </ItemGroup>
 
 </Project>

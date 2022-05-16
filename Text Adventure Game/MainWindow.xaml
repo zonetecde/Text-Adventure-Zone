@@ -3,20 +3,65 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Text_Adventure_Game"
+        xmlns:local2="clr-namespace:Text_adventure_maker;assembly=Text_adventure_maker" 
+        xmlns:local="clr-namespace:Text_Adventure_Game.Utilities.CustomUIElement"
         mc:Ignorable="d" d:Width="1080" d:Height="720" MinWidth="1080" MinHeight="720"
-        Title="MainWindow" WindowStartupLocation="CenterScreen" WindowStyle="None" WindowState="Maximized" ResizeMode="NoResize" >
+        Title="MainWindow" WindowStartupLocation="CenterScreen" WindowStyle="None" WindowState="Maximized" ResizeMode="NoResize" ContentRendered="Window_ContentRendered" Closing="Window_Closing" >
     <Window.Background>
         <ImageBrush ImageSource="resources/game_menu_background.jpg"/>
     </Window.Background>
 
     <Grid>
         <Grid x:Name="Grid_MainMenu">
-            <Image Source="resources/text_adventure_zone.png" VerticalAlignment="Top" Margin="50,100,50,0"/>
             <Image Source="resources/settings.png" VerticalAlignment="Bottom" Margin="10,0,0,10" HorizontalAlignment="Left" Width="50" Cursor="Hand" MouseDown="Image_Settings_MouseDown"/>
+
+            <StackPanel Margin="0,100,0,100">
+                <Image Source="resources/text_adventure_zone.png" VerticalAlignment="Top" Margin="50,0,50,0"/>
+
+                <Border VerticalAlignment="Top" Width="400" MinHeight="90" Margin="0,100,0,0" BorderThickness="5,5,5,5" CornerRadius="25,25,25,25" >
+                    <Border.BorderBrush>
+                        <ImageBrush ImageSource="/resources/wood2.jpg"/>
+                    </Border.BorderBrush>
+                    <Border.Background>
+                        <ImageBrush ImageSource="resources/wood3.jpg" Stretch="UniformToFill" TileMode="Tile"/>
+                    </Border.Background>
+
+                    <Button Cursor="Hand" Style="{DynamicResource ButtonStyle_Menu}" Background="Transparent" BorderBrush="#00707070" Content="JOUER" FontFamily="Comic Sans MS" FontSize="40" >
+
+
+
+                        <Button.Foreground>
+                            <ImageBrush ImageSource="/resources/wood2.jpg"/>
+                        </Button.Foreground>
+
+                    </Button>
+
+
+                </Border>
+
+                <Border VerticalAlignment="Top" Width="400" MinHeight="90" Margin="0,40,0,0" BorderThickness="5,5,5,5" CornerRadius="25,25,25,25" >
+                    <Border.BorderBrush>
+                        <ImageBrush ImageSource="/resources/wood2.jpg"/>
+                    </Border.BorderBrush>
+                    <Border.Background>
+                        <ImageBrush ImageSource="resources/wood3.jpg" Stretch="UniformToFill" TileMode="Tile"/>
+                    </Border.Background>
+
+                    <Button Cursor="Hand" Style="{DynamicResource ButtonStyle_Menu}" Background="Transparent" BorderBrush="#00707070" Content="CRÉER" FontFamily="Comic Sans MS" FontSize="40" Click="Button_Créer_Click" >
+                        <Button.Foreground>
+                            <ImageBrush ImageSource="/resources/wood2.jpg"/>
+                        </Button.Foreground>
+                    </Button>
+                </Border>
+
+            </StackPanel>
         </Grid>
 
-        <Grid x:Name="Grid_Settings" Visibility="Visible" Background="#99000000">
+        <Grid x:Name="Grid_GameMaker" Visibility="Hidden">
+            <local2:UserControl_GameMaker />
+        </Grid>
+        
+        <Grid x:Name="Grid_Settings" Visibility="Hidden" Background="#99000000">
             <Border HorizontalAlignment="Center" VerticalAlignment="Center" Width="900" Height="600" BorderThickness="5,5,5,5" CornerRadius="20,20,20,20">
                 <Border.BorderBrush>
                     <ImageBrush ImageSource="resources/wood2.jpg"/>
@@ -25,7 +70,11 @@
                     <ImageBrush ImageSource="resources/wood1.jpg"/>
                 </Border.Background>
                 <Grid>
-                    <Label Content="Paramètres" FontFamily="Comic Sans MS" Foreground="Black" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,20,0,0" FontSize="80"/>
+                    <Image Source="resources/close.png" Margin="825,8,10,524" MouseDown="CloseSettingsButton_MouseDown" Cursor="Hand"/>
+                    <Label Content="Paramètres" FontFamily="Comic Sans MS" Foreground="White" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,20,0,0" FontSize="80"/>
+
+                    <Label Content="Plein écran" FontFamily="Comic Sans MS" Foreground="White" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10,196,0,0" FontSize="30"/>
+                    <local:CustomUIElement_checkbox x:Name="checkbox_fullscreen" Width="50" Height="50" Margin="813,198,27,342" />
                 </Grid>
             </Border>
         </Grid>
