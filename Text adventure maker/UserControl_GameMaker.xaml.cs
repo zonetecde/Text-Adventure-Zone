@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ClassesZone;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,11 +21,20 @@ namespace Text_adventure_maker
     /// </summary>
     public partial class UserControl_GameMaker : UserControl
     {
+        UIElement tempElement;
+
         public UserControl_GameMaker()
         {
             InitializeComponent();
 
-            Grid_main.Children.Add(new UserControl_ProjectLoaderAndCreater());
+            tempElement = new UserControl_ProjectLoaderAndCreater(OpenProject);
+            Grid_main.Children.Add(tempElement);
+        }
+
+        private void OpenProject(Projet projet)
+        {
+            // Enlève le sélecteur de projet
+            tempElement.Visibility = Visibility.Collapsed;
         }
     }
 }

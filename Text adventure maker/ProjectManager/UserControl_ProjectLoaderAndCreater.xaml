@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Text_adventure_maker"
              mc:Ignorable="d" 
-             d:DesignHeight="720" d:DesignWidth="1080" >
+             d:DesignHeight="720" d:DesignWidth="1080" Loaded="UserControl_Loaded" >
     <Grid>
         <Grid x:Name="Grid_Projects" Background="#7F000000">
             <Border BorderBrush="Black" BorderThickness="1,1,1,1" Background="#FF463F3F" HorizontalAlignment="Center" VerticalAlignment="Center" Width="1000" Height="700" CornerRadius="25,25,25,25">
@@ -13,7 +13,7 @@
                     <Border Margin="10,10,472,10" Background="#33000000" CornerRadius="25,25,25,25">
                         <ScrollViewer >
                             <StackPanel x:Name="StackPanel_projets">
-                                <Label Content="Ouvrir un projet" Foreground="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="25" Margin="0,15,0,0"/>
+                                <Label Content="Ouvrir un projet" Foreground="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="25" Margin="0,15,0,15"/>
                             </StackPanel>
                         </ScrollViewer>
                     </Border>
@@ -26,7 +26,7 @@
                     <Label Margin="544,349,352,311" Content="Image :" FontSize="20" Foreground="White"/>
                     <TextBlock x:Name="textBlock_imagePath" TextWrapping="Wrap" Margin="760,387,23,144" Text="default.png" Foreground="White"/>
                     <Border  Margin="548,387,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="202" Height="202" BorderBrush="Black" BorderThickness="1,1,1,1"  >
-                        <Image x:Name="image_GameIcon" Stretch="Fill" Source="resources/default.jpg" MouseDown="Image_GameIcon_MouseDown" />
+                        <Image x:Name="image_GameIcon" Stretch="Fill" Source="/resources/default.jpg" MouseDown="Image_GameIcon_MouseDown" />
                     </Border>
                     <Button Style="{DynamicResource ButtonStyle_Menu}" Margin="760,559,149,109" Content="supprimer" Background="#FFB9ABAB" Foreground="Black" FontSize="14" Click="Button_SupprimerGameIcon_Click"/>
 

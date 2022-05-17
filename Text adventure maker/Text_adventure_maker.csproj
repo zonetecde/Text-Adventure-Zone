@@ -10,6 +10,11 @@
 
   <ItemGroup>
     <None Remove="default.jpg" />
+    <None Remove="resources\default.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="resources\default.jpg" />
   </ItemGroup>
 
   <ItemGroup>
@@ -19,10 +24,6 @@
   <ItemGroup>
     <ProjectReference Include="..\ClassesZone\ClassesZone.csproj" />
     <ProjectReference Include="..\Utilities\Utilities.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Resource Include="resources\default.jpg" />
   </ItemGroup>
 
   <ItemGroup>

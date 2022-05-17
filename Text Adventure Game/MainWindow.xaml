@@ -58,7 +58,6 @@
         </Grid>
 
         <Grid x:Name="Grid_GameMaker" Visibility="Hidden">
-            <local2:UserControl_GameMaker />
         </Grid>
         
         <Grid x:Name="Grid_Settings" Visibility="Hidden" Background="#99000000">

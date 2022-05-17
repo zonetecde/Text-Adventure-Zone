@@ -24,14 +24,23 @@ namespace Text_adventure_maker
     /// </summary>
     public partial class UserControl_ProjectLoaderAndCreater : UserControl
     {
-        public UserControl_ProjectLoaderAndCreater()
+        public Action<Projet> OpenProject { get; }
+
+        public UserControl_ProjectLoaderAndCreater(Action<Projet> openProject)
         {
             InitializeComponent();
+            OpenProject = openProject;
+
+            // elle n'apparait pas au lancement
+            image_GameIcon.Source = Utilities.Extensions.ImageSourceFromBitmap(new Bitmap(Properties.Resources.defaultIcon1));
         }
 
         private void Button_Create_Click(object sender, RoutedEventArgs e)
         {
-            if(!String.IsNullOrEmpty(textBox_gameName.Text))
+            if(!String.IsNullOrEmpty(textBox_gameName.Text) && Utilities.Extensions.DoNotContainTheses(textBox_gameName.Text, new List<char>()
+            {
+                '/', '\\', ':', '?', '"', '<', '>', '|'
+            }))
             {
                 // Un autre projet existe déjà sous ce nom
                 if(UserDataManager.UserData.Projets.Any(x => x.Name.Equals(textBox_gameName.Text)))
@@ -57,7 +66,9 @@ namespace Text_adventure_maker
                     else
                         Utilities.Extensions.BitmapImage2Bitmap(image_GameIcon.Source as BitmapImage).Save(projet.Path + @"\icon.png", ImageFormat.Png);
 
-                    UserDataManager.UserData.Projets.Add(projet);
+                    UserDataManager.UserData.Projets.Insert(0, projet);
+
+                    OpenProject(projet);
                 }
             }
             else
@@ -99,6 +110,15 @@ namespace Text_adventure_maker
         {
             textBlock_imagePath.Text = "default.png";
             image_GameIcon.Source = Utilities.Extensions.ImageSourceFromBitmap( new Bitmap(Properties.Resources.defaultIcon1));
+        }
+
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            // Affiche les projets
+            foreach(Projet projet in UserDataManager.UserData.Projets)
+            {
+                StackPanel_projets.Children.Add(new UserControl_Projet(projet, OpenProject));
+            }
         }
     }
 }

@@ -5,3 +5,6 @@ dotnet_diagnostic.CS8618.severity = none
 
 # CS8604: Existence possible d'un argument de référence null.
 dotnet_diagnostic.CS8604.severity = silent
+
+# CS8600: Conversion de littéral ayant une valeur null ou d'une éventuelle valeur null en type non-nullable.
+dotnet_diagnostic.CS8600.severity = silent

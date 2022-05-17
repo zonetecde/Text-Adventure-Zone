@@ -15,6 +15,8 @@ namespace Utilities
 {
     public static class Extensions
     {
+        public static BrushConverter ColorConverter = new BrushConverter();
+
         public static Bitmap BitmapImage2Bitmap(BitmapImage bitmapImage)
         {
             // BitmapImage bitmapImage = new BitmapImage(new Uri("../Images/test.png", UriKind.Relative));
@@ -28,6 +30,18 @@ namespace Utilities
 
                 return new Bitmap(bitmap);
             }
+        }
+
+        public static bool DoNotContainTheses(string text, List<char> list)
+        {
+            bool toReturn = true;
+            text.ToList().ForEach(x =>
+            {
+                if(list.Any(y => y.Equals(x)))
+                    toReturn = false;
+            });
+
+            return toReturn;
         }
 
         //If you get 'dllimport unknown'-, then add 'using System.Runtime.InteropServices;'

@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Text_adventure_maker;
 
 namespace Text_Adventure_Game
 {
@@ -56,6 +57,7 @@ namespace Text_Adventure_Game
 
         private void ShowGameMaker()
         {
+            Grid_GameMaker.Children.Add(new UserControl_GameMaker());
             Grid_GameMaker.Visibility = Visibility.Visible;
         }
 
