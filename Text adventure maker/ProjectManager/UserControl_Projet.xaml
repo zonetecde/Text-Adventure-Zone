@@ -9,5 +9,6 @@
     <Grid>
         <Image x:Name="img_icon" Margin="5,3,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="70" Height="70" Source="/resources/default.jpg" Stretch="Fill"/>
         <TextBlock x:Name="textBlock_nom" Text="Nom du projet ici" Margin="80,0,10,0" VerticalAlignment="Center" Foreground="White" FontSize="20"/>
+        <Image x:Name="image_delete" Width="20" Height="20" VerticalAlignment="Top" HorizontalAlignment="Right" Source="/ProjectManager/trash.png" Margin="0,5,5,0" Cursor="Hand" MouseDown="image_delete_MouseDown" />
     </Grid>
 </UserControl>

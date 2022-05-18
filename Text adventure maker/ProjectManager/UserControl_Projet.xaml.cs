@@ -18,17 +18,20 @@ namespace Text_adventure_maker
 {
     /// <summary>
     /// Logique d'interaction pour UserControl_Projet.xaml
+    /// UserControl qui apparait pour sélectionner un projet parmis ceux déjà créé.
     /// </summary>
     public partial class UserControl_Projet : UserControl
     {
+
         public UserControl_Projet(Projet projet, Action<Projet> openProject)
         {
             InitializeComponent();
             Projet = projet;
             OpenProject = openProject;
 
-            img_icon.Source = new BitmapImage(new Uri(projet.Path + @"\icon.png"));
+            img_icon.Source = new BitmapImage(new Uri(UserDataManager.ProjectsPath + projet.Path + @"\icon.png"));
             textBlock_nom.Text = projet.Name;
+
             if(!String.IsNullOrEmpty(projet.Description))
                 textBlock_nom.ToolTip = projet.Description; 
         }
@@ -42,10 +45,12 @@ namespace Text_adventure_maker
             // #FF3A3737
             this.MouseEnter += (sender, e) =>
             {
+                image_delete.Visibility = Visibility.Visible; // img en haut à droite de UC pour supprimer le projet 
                 this.Background = (Brush)Utilities.Extensions.ColorConverter.ConvertFromString("#FF2B2626");
             };
             this.MouseLeave += (sender, e) =>
             {
+                image_delete.Visibility = Visibility.Hidden; // img en haut à droite de UC pour supprimer le projet 
                 this.Background = Brushes.Transparent;
             };
             this.MouseDown += (sender, e) =>
@@ -59,6 +64,14 @@ namespace Text_adventure_maker
                     OpenProject(Projet);
                 }
             };
+        }
+
+        private void image_delete_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if(e.LeftButton == MouseButtonState.Pressed)
+            {
+                //Utilities.U // usercontrol etes vous sure
+            }
         }
     }
 }

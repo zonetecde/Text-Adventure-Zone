@@ -56,15 +56,15 @@ namespace Text_adventure_maker
                         Name = textBox_gameName.Text,
                         CreationDate = DateTime.Now,
                         Description = richTextBox_description.Text,
-                        Path = UserDataManager.ProjectsPath += textBox_gameName.Text
+                        Path = textBox_gameName.Text
                     };
 
-                    Directory.CreateDirectory(projet.Path);
+                    Directory.CreateDirectory(UserDataManager.ProjectsPath + projet.Path);
 
                     if(textBlock_imagePath.Text.Equals("default.png"))
-                        new Bitmap(Properties.Resources.defaultIcon1).Save(projet.Path + @"\icon.png", ImageFormat.Png);
+                        new Bitmap(Properties.Resources.defaultIcon1).Save(UserDataManager.ProjectsPath + projet.Path + @"\icon.png", ImageFormat.Png);
                     else
-                        Utilities.Extensions.BitmapImage2Bitmap(image_GameIcon.Source as BitmapImage).Save(projet.Path + @"\icon.png", ImageFormat.Png);
+                        Utilities.Extensions.BitmapImage2Bitmap(image_GameIcon.Source as BitmapImage).Save(UserDataManager.ProjectsPath + projet.Path + @"\icon.png", ImageFormat.Png);
 
                     UserDataManager.UserData.Projets.Insert(0, projet);
 

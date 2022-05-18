@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <None Remove="default.jpg" />
+    <None Remove="ProjectManager\trash.png" />
     <None Remove="resources\default.jpg" />
   </ItemGroup>
 
@@ -24,6 +25,10 @@
   <ItemGroup>
     <ProjectReference Include="..\ClassesZone\ClassesZone.csproj" />
     <ProjectReference Include="..\Utilities\Utilities.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="ProjectManager\trash.png" />
   </ItemGroup>
 
   <ItemGroup>
