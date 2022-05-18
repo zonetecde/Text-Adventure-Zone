@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="Text_adventure_maker.UserControl_ProjectLoaderAndCreater"
+﻿<UserControl x:Class="Text_adventure_maker.ProjectManager.UserControl_ProjectLoaderAndCreater"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 

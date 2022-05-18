@@ -10,7 +10,6 @@
 
   <ItemGroup>
     <None Remove="default.jpg" />
-    <None Remove="ProjectManager\trash.png" />
     <None Remove="resources\default.jpg" />
   </ItemGroup>
 
@@ -28,7 +27,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="ProjectManager\trash.png" />
+    <Resource Include="ProjectManager\trash.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
 
   <ItemGroup>

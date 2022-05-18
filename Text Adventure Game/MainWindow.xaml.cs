@@ -22,9 +22,13 @@ namespace Text_Adventure_Game
     /// </summary>
     public partial class GameWindow : Window
     {
+        public static GameWindow _GameWindow { get; private set; }
+
         public GameWindow()
         {
             InitializeComponent();
+
+            _GameWindow = this;
         }
 
         private void Image_Settings_MouseDown(object sender, MouseButtonEventArgs e)

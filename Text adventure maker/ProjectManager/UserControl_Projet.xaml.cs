@@ -1,6 +1,8 @@
 ﻿using ClassesZone;
+using Utilities;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,7 +16,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Text_adventure_maker
+namespace Text_adventure_maker.ProjectManager
 {
     /// <summary>
     /// Logique d'interaction pour UserControl_Projet.xaml
@@ -23,13 +25,15 @@ namespace Text_adventure_maker
     public partial class UserControl_Projet : UserControl
     {
 
+
         public UserControl_Projet(Projet projet, Action<Projet> openProject)
         {
             InitializeComponent();
             Projet = projet;
             OpenProject = openProject;
 
-            img_icon.Source = new BitmapImage(new Uri(UserDataManager.ProjectsPath + projet.Path + @"\icon.png"));
+            img_icon.Source = Utilities.Extensions.BitmapFromUri(new Uri(UserDataManager.ProjectsPath + projet.Path + @"\icon.png"));
+
             textBlock_nom.Text = projet.Name;
 
             if(!String.IsNullOrEmpty(projet.Description))
@@ -70,7 +74,18 @@ namespace Text_adventure_maker
         {
             if(e.LeftButton == MouseButtonState.Pressed)
             {
-                //Utilities.U // usercontrol etes vous sure
+                UserControl_GameMaker._UserControl_GameMaker.Grid_message.Children.Add(new Utilities.UserControl_YesNo("Êtes-vous sûre de vouloir supprimer définitivement \"" + Projet.Name + "\" ?", () =>
+                {
+                    // delete le projet
+                    img_icon.Source = null;
+                    Directory.Delete(UserDataManager.ProjectsPath + Projet.Path, true); 
+                    UserDataManager.UserData.Projets.Remove(Projet);
+                    this.Visibility = Visibility.Collapsed;
+
+                }, () =>
+                {
+
+                }));
             }
         }
     }

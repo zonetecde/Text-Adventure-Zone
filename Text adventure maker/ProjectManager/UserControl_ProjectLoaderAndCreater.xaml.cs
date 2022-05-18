@@ -16,8 +16,9 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using ClassesZone;
+using Text_adventure_maker.ProjectManager;
 
-namespace Text_adventure_maker
+namespace Text_adventure_maker.ProjectManager
 {
     /// <summary>
     /// Logique d'interaction pour UserControl_Creater.xaml

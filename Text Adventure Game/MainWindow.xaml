@@ -77,5 +77,9 @@
                 </Grid>
             </Border>
         </Grid>
+
+        <Grid Visibility="Hidden" x:Name="Grid_ShowMessage">
+            
+        </Grid>
     </Grid>
 </Window>
