@@ -24,18 +24,20 @@ namespace Text_Adventure_Game.Text_Adventure_Maker.Project_Manager
     /// </summary>
     public partial class UserControl_Projet : UserControl
     {
-
-
         public UserControl_Projet(Projet projet, Action<Projet> openProject, UserControl_ProjectLoaderAndCreater userControl_ProjectLoaderAndCreater)
         {
             InitializeComponent();
+
             Projet = projet;
             OpenProject = openProject;
             UserControl_ProjectLoaderAndCreater = userControl_ProjectLoaderAndCreater;
-            img_icon.Source = Utilities.Extensions.BitmapFromUri(new Uri(UserDataManager.ProjectsPath + projet.Path + @"\icon.png"));
 
+            // L'icone du projet
+            img_icon.Source = Utilities.Extensions.BitmapFromUri(new Uri(UserDataManager.ProjectsPath + projet.Path + @"\icon.png"));
+            // Nom du projet
             textBlock_nom.Text = projet.Name;
 
+            // Si il y a une description, on l'affiche en tant que toolTip
             if(!String.IsNullOrEmpty(projet.Description))
                 textBlock_nom.ToolTip = projet.Description; 
         }
@@ -47,27 +49,30 @@ namespace Text_Adventure_Game.Text_Adventure_Maker.Project_Manager
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            // transparent
-            // #FF3A3737
             this.MouseEnter += (sender, e) =>
             {
-                image_delete.Visibility = Visibility.Visible; // img en haut à droite de UC pour supprimer le projet 
+                // effet de mouseOver
+                image_delete.Visibility = Visibility.Visible; // affiche img pour supprimer le projet 
                 this.Background = (Brush)Utilities.Extensions.ColorConverter.ConvertFromString("#FF2B2626");
             };
             this.MouseLeave += (sender, e) =>
             {
-                image_delete.Visibility = Visibility.Hidden; // img en haut à droite de UC pour supprimer le projet 
+                // effet de mouseOver
+                image_delete.Visibility = Visibility.Hidden; // cache img pour supprimer le projet 
                 this.Background = Brushes.Transparent;
             };
             this.MouseDown += (sender, e) =>
             {
                 if(e.LeftButton == MouseButtonState.Pressed)
                 {
+                    // Le projet est sélectionné
+                    // On le met en haut de la liste des projets (ouvert le plus récemment donc)
                     var projectToPlaceOnTop = UserDataManager.UserData.Projets[UserDataManager.UserData.Projets.IndexOf(Projet)];
                     UserDataManager.UserData.Projets.RemoveAt(UserDataManager.UserData.Projets.IndexOf(Projet));
                     UserDataManager.UserData.Projets.Insert(0, projectToPlaceOnTop);
 
-                    UserControl_ProjectLoaderAndCreater.Visibility = Visibility.Collapsed;
+                    // Cache le sélecteur de projet et lance le projet
+                    UserControl_ProjectLoaderAndCreater.Visibility = Visibility.Hidden;
                     OpenProject(Projet);
                 }
             };
@@ -77,18 +82,15 @@ namespace Text_Adventure_Game.Text_Adventure_Maker.Project_Manager
         {
             if(e.LeftButton == MouseButtonState.Pressed)
             {
+                // Le projet veut être supprimé, on demande quand même pour être sûre
                 GameWindow._GameWindow.Grid_Message.Children.Add(new UserControl_YesNo("Êtes-vous sûre de vouloir supprimer définitivement \"" + Projet.Name + "\" ?", () =>
                 {
-                    // delete le projet
-                    img_icon.Source = null;
-                    Directory.Delete(UserDataManager.ProjectsPath + Projet.Path, true);
-                    UserDataManager.UserData.Projets.Remove(Projet);
-                    this.Visibility = Visibility.Collapsed;
-
-                    UserControl_ProjectLoaderAndCreater.Visibility = Visibility.Visible;
+                    // L'utilisateur confirme, supprimation du projet
+                    Directory.Delete(UserDataManager.ProjectsPath + Projet.Path, true); // supprime le dossier du projet
+                    UserDataManager.UserData.Projets.Remove(Projet); // enlève le projet de la liste des projets
+                    this.Visibility = Visibility.Collapsed; // cache le projet de la liste des projets
                 }, () =>
                 {
-                    UserControl_ProjectLoaderAndCreater.Visibility = Visibility.Visible;
                 }, UserControl_ProjectLoaderAndCreater));
             }
         }

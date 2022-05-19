@@ -38,6 +38,7 @@ namespace Text_Adventure_Game.Utilities.CustomUIElement
         {
             No();
 
+            ToShow.Visibility = Visibility.Visible; // Affiche le uiElement en dessous du message, car il se cache pour x raison inconnu
             GameWindow._GameWindow.Grid_Message.Children.Remove(this);
         }
 
@@ -45,12 +46,13 @@ namespace Text_Adventure_Game.Utilities.CustomUIElement
         {
             Yes();
 
+            ToShow.Visibility = Visibility.Visible; // Affiche le uiElement en dessous du message, car il se cache pour x raison inconnu
             GameWindow._GameWindow.Grid_Message.Children.Remove(this);
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            ToShow.Visibility = Visibility.Visible;
+            ToShow.Visibility = Visibility.Visible; // Affiche le uiElement en dessous du message, car il se cache pour x raison inconnu
         }
     }
 }

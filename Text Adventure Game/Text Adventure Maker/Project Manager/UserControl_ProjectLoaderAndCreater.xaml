@@ -29,7 +29,7 @@
                     </Border>
                     <Button Style="{DynamicResource ButtonStyle_Menu}" Margin="760,559,149,109" Content="supprimer" Background="#FFB9ABAB" Foreground="Black" FontSize="14" Click="Button_SupprimerGameIcon_Click"/>
 
-                    <Button  Style="{DynamicResource ButtonStyle_Menu}"  Margin="545,627,23,10" Content="Nouveau projet" FontSize="30" Background="#33000000" Foreground="White" Click="Button_Create_Click"/>
+                    <Button x:Name="Button_Create"  Style="{DynamicResource ButtonStyle_Menu}"  Margin="545,627,23,10" Content="Nouveau projet" FontSize="30" Background="#33000000" Foreground="White" Click="Button_Create_Click" Cursor="Hand"/>
                 </Grid>
             </Border>
         </Grid>

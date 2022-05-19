@@ -33,25 +33,28 @@ namespace Text_Adventure_Game
 
         private void Image_Settings_MouseDown(object sender, MouseButtonEventArgs e)
         {
+            // Affiche la page des paramètres
             if (e.LeftButton == MouseButtonState.Pressed)
                 ShowSettings();
         }
 
         private void ShowSettings()
         {
+            // Set les settings actuelle en fonction de la fenêtre
             Grid_Settings.Visibility = Visibility.Visible;
             checkbox_fullscreen.img_checked.Visibility = this.WindowStyle == WindowStyle.None ? Visibility.Visible : Visibility.Hidden;
             checkbox_fullscreen.img_unchecked.Visibility = this.WindowStyle == WindowStyle.None ? Visibility.Hidden : Visibility.Visible;
+
+            // Settings : Fullscreen / Windowed
+            checkbox_fullscreen.ActionWhenCheckedOrUnchecked = () => {
+                this.WindowStyle = this.WindowStyle == WindowStyle.None ? WindowStyle.SingleBorderWindow : WindowStyle.None;
+            };
         }
 
         private void Window_ContentRendered(object sender, EventArgs e)
         {
             // Init les données de l'utilisateur
             UserDataManager.InitDataSaverAndLoader();
-
-            checkbox_fullscreen.ActionWhenCheckedOrUnchecked = () => {
-                this.WindowStyle = this.WindowStyle == WindowStyle.None ? WindowStyle.SingleBorderWindow : WindowStyle.None;
-            };
         }
 
         private void Button_Créer_Click(object sender, RoutedEventArgs e)
@@ -61,13 +64,14 @@ namespace Text_Adventure_Game
 
         private void ShowGameMaker()
         {
+            // Affiche le sélecteur de projet 
             Grid_GameMaker.Children.Add(new UserControl_ProjectLoaderAndCreater(OpenProject));
             Grid_GameMaker.Visibility = Visibility.Visible;
         }
 
         private void OpenProject(Projet projet)
         {
-
+            // Ouvre le projet
         }
 
         private void CloseSettingsButton_MouseDown(object sender, MouseButtonEventArgs e)
