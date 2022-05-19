@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Text_adventure_maker.Properties {
+namespace Text_Adventure_Game.Properties {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace Text_adventure_maker.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Text_adventure_maker.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Text_Adventure_Game.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,20 +61,11 @@ namespace Text_adventure_maker.Properties {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à .
-        /// </summary>
-        internal static string defaultIcon {
-            get {
-                return ResourceManager.GetString("defaultIcon", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap defaultIcon1 {
+        internal static System.Drawing.Bitmap defaultIcon {
             get {
-                object obj = ResourceManager.GetObject("defaultIcon1", resourceCulture);
+                object obj = ResourceManager.GetObject("defaultIcon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

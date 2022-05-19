@@ -3,20 +3,12 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.1.32228.430
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Text_adventure_maker", "Text adventure maker\Text_adventure_maker.csproj", "{572E470C-01C9-4261-AE66-40671FA97272}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Text_adventure_player", "Text adventure player\Text_adventure_player.csproj", "{E60D9916-85AB-4DD5-A933-23C2E4E93953}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Text Adventure Game", "Text Adventure Game\Text Adventure Game.csproj", "{0DFC84D2-4319-4577-834F-ADA8A1DB8E3A}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClassesZone", "ClassesZone\ClassesZone.csproj", "{997BD7B6-176A-451C-A760-8FF2DF5D4686}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{F8292221-1F9E-4FE0-B6D2-8B80E894370A}"
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
 	EndProjectSection
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utilities", "Utilities\Utilities.csproj", "{042F8E14-B281-4A5A-94FE-D8262A8848B6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -24,26 +16,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{572E470C-01C9-4261-AE66-40671FA97272}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{572E470C-01C9-4261-AE66-40671FA97272}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{572E470C-01C9-4261-AE66-40671FA97272}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{572E470C-01C9-4261-AE66-40671FA97272}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E60D9916-85AB-4DD5-A933-23C2E4E93953}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E60D9916-85AB-4DD5-A933-23C2E4E93953}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E60D9916-85AB-4DD5-A933-23C2E4E93953}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E60D9916-85AB-4DD5-A933-23C2E4E93953}.Release|Any CPU.Build.0 = Release|Any CPU
 		{0DFC84D2-4319-4577-834F-ADA8A1DB8E3A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{0DFC84D2-4319-4577-834F-ADA8A1DB8E3A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0DFC84D2-4319-4577-834F-ADA8A1DB8E3A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0DFC84D2-4319-4577-834F-ADA8A1DB8E3A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{997BD7B6-176A-451C-A760-8FF2DF5D4686}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{997BD7B6-176A-451C-A760-8FF2DF5D4686}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{997BD7B6-176A-451C-A760-8FF2DF5D4686}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{997BD7B6-176A-451C-A760-8FF2DF5D4686}.Release|Any CPU.Build.0 = Release|Any CPU
-		{042F8E14-B281-4A5A-94FE-D8262A8848B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{042F8E14-B281-4A5A-94FE-D8262A8848B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{042F8E14-B281-4A5A-94FE-D8262A8848B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{042F8E14-B281-4A5A-94FE-D8262A8848B6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

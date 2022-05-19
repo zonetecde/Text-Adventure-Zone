@@ -15,19 +15,27 @@
     <None Remove="game_menu_background.jpg" />
     <None Remove="red-close-icon-40.png" />
     <None Remove="settings.png" />
+    <None Remove="Text Adventure Maker\Project Manager\trash.png" />
+    <None Remove="Text Adventure Maker\resources\default.jpg" />
     <None Remove="wood1.jpg" />
     <None Remove="wood2.jpg" />
     <None Remove="wood3.jpg" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ClassesZone\ClassesZone.csproj" />
-    <ProjectReference Include="..\Text adventure maker\Text_adventure_maker.csproj" />
-    <ProjectReference Include="..\Text adventure player\Text_adventure_player.csproj" />
+    <EmbeddedResource Include="Text Adventure Maker\resources\default.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="System.Drawing.Common" Version="6.0.0" />
   </ItemGroup>
 
   <ItemGroup>
     <Resource Include="resources\close.png" />
+    <Resource Include="Text Adventure Maker\Project Manager\resources\trash.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Utilities\CustomUIElement\resources\checkbox_checked.png" />
     <Resource Include="Utilities\CustomUIElement\resources\checkbox_unchecked.png" />
     <Resource Include="resources\wood1.jpg" />
@@ -36,6 +44,45 @@
     <Resource Include="resources\game_menu_background.jpg" />
     <Resource Include="resources\wood2.jpg" />
     <Resource Include="resources\wood3.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Properties\Resources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Text Adventure Maker\Project Manager\UserControl_ProjectLoaderAndCreater.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Text Adventure Maker\Project Manager\UserControl_Projet.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Utilities\CustomUIElement\UserControl_YesNo.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="Text Adventure Maker\Project Manager\UserControl_ProjectLoaderAndCreater.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Text Adventure Maker\Project Manager\UserControl_Projet.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Utilities\CustomUIElement\UserControl_YesNo.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
 
 </Project>

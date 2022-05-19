@@ -15,10 +15,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using ClassesZone;
-using Text_adventure_maker.ProjectManager;
+using Text_Adventure_Game.Classes;
 
-namespace Text_adventure_maker.ProjectManager
+namespace Text_Adventure_Game.Text_Adventure_Maker.Project_Manager
 {
     /// <summary>
     /// Logique d'interaction pour UserControl_Creater.xaml
@@ -26,6 +25,7 @@ namespace Text_adventure_maker.ProjectManager
     public partial class UserControl_ProjectLoaderAndCreater : UserControl
     {
         public Action<Projet> OpenProject { get; }
+        public GameWindow GameWindow { get; }
 
         public UserControl_ProjectLoaderAndCreater(Action<Projet> openProject)
         {
@@ -33,7 +33,7 @@ namespace Text_adventure_maker.ProjectManager
             OpenProject = openProject;
 
             // elle n'apparait pas au lancement
-            image_GameIcon.Source = Utilities.Extensions.ImageSourceFromBitmap(new Bitmap(Properties.Resources.defaultIcon1));
+            image_GameIcon.Source = Utilities.Extensions.ImageSourceFromBitmap(new Bitmap(Properties.Resources.defaultIcon));
         }
 
         private void Button_Create_Click(object sender, RoutedEventArgs e)
@@ -61,14 +61,15 @@ namespace Text_adventure_maker.ProjectManager
                     };
 
                     Directory.CreateDirectory(UserDataManager.ProjectsPath + projet.Path);
-
+                    
                     if(textBlock_imagePath.Text.Equals("default.png"))
-                        new Bitmap(Properties.Resources.defaultIcon1).Save(UserDataManager.ProjectsPath + projet.Path + @"\icon.png", ImageFormat.Png);
+                        new Bitmap(Text_Adventure_Game.Properties.Resources.defaultIcon).Save(UserDataManager.ProjectsPath + projet.Path + @"\icon.png", ImageFormat.Png);
                     else
                         Utilities.Extensions.BitmapImage2Bitmap(image_GameIcon.Source as BitmapImage).Save(UserDataManager.ProjectsPath + projet.Path + @"\icon.png", ImageFormat.Png);
 
                     UserDataManager.UserData.Projets.Insert(0, projet);
 
+                    this.Visibility = Visibility.Collapsed;
                     OpenProject(projet);
                 }
             }
@@ -110,7 +111,7 @@ namespace Text_adventure_maker.ProjectManager
         private void Button_SupprimerGameIcon_Click(object sender, RoutedEventArgs e)
         {
             textBlock_imagePath.Text = "default.png";
-            image_GameIcon.Source = Utilities.Extensions.ImageSourceFromBitmap( new Bitmap(Properties.Resources.defaultIcon1));
+            image_GameIcon.Source = Utilities.Extensions.ImageSourceFromBitmap( new Bitmap(Properties.Resources.defaultIcon));
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
@@ -118,7 +119,7 @@ namespace Text_adventure_maker.ProjectManager
             // Affiche les projets
             foreach(Projet projet in UserDataManager.UserData.Projets)
             {
-                StackPanel_projets.Children.Add(new UserControl_Projet(projet, OpenProject));
+                StackPanel_projets.Children.Add(new UserControl_Projet(projet, OpenProject, this));
             }
         }
     }

@@ -1,5 +1,4 @@
-﻿using ClassesZone;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,7 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Text_adventure_maker;
+using Text_Adventure_Game.Classes;
+using Text_Adventure_Game.Text_Adventure_Maker.Project_Manager;
 
 namespace Text_Adventure_Game
 {
@@ -61,8 +61,13 @@ namespace Text_Adventure_Game
 
         private void ShowGameMaker()
         {
-            Grid_GameMaker.Children.Add(new UserControl_GameMaker());
+            Grid_GameMaker.Children.Add(new UserControl_ProjectLoaderAndCreater(OpenProject));
             Grid_GameMaker.Visibility = Visibility.Visible;
+        }
+
+        private void OpenProject(Projet projet)
+        {
+
         }
 
         private void CloseSettingsButton_MouseDown(object sender, MouseButtonEventArgs e)

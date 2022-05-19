@@ -11,7 +11,7 @@ using System.Windows.Interop;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
-namespace Utilities
+namespace Text_Adventure_Game.Utilities
 {
     public static class Extensions
     {

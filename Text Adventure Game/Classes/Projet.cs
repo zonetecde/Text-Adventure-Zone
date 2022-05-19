@@ -1,4 +1,6 @@
-﻿namespace ClassesZone
+﻿using System;
+
+namespace Text_Adventure_Game.Classes
 {
     public class Projet
     {

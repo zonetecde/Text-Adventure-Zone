@@ -3,7 +3,6 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local2="clr-namespace:Text_adventure_maker;assembly=Text_adventure_maker" 
         xmlns:local="clr-namespace:Text_Adventure_Game.Utilities.CustomUIElement"
         mc:Ignorable="d" d:Width="1080" d:Height="720" MinWidth="1080" MinHeight="720"
         Title="MainWindow" WindowStartupLocation="CenterScreen" WindowStyle="None" WindowState="Maximized" ResizeMode="NoResize" ContentRendered="Window_ContentRendered" Closing="Window_Closing" >
@@ -57,9 +56,10 @@
             </StackPanel>
         </Grid>
 
-        <Grid x:Name="Grid_GameMaker" Visibility="Hidden">
+        <Grid x:Name="Grid_GameMaker" Visibility="Hidden" Background="#FF3A3A3A">
+            
         </Grid>
-        
+
         <Grid x:Name="Grid_Settings" Visibility="Hidden" Background="#99000000">
             <Border HorizontalAlignment="Center" VerticalAlignment="Center" Width="900" Height="600" BorderThickness="5,5,5,5" CornerRadius="20,20,20,20">
                 <Border.BorderBrush>
@@ -78,7 +78,7 @@
             </Border>
         </Grid>
 
-        <Grid Visibility="Hidden" x:Name="Grid_ShowMessage">
+        <Grid x:Name="Grid_Message">
             
         </Grid>
     </Grid>

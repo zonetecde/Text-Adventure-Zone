@@ -1,6 +1,4 @@
-﻿using ClassesZone;
-using Utilities;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -15,8 +13,10 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Text_Adventure_Game.Classes;
+using Text_Adventure_Game.Utilities.CustomUIElement;
 
-namespace Text_adventure_maker.ProjectManager
+namespace Text_Adventure_Game.Text_Adventure_Maker.Project_Manager
 {
     /// <summary>
     /// Logique d'interaction pour UserControl_Projet.xaml
@@ -26,12 +26,12 @@ namespace Text_adventure_maker.ProjectManager
     {
 
 
-        public UserControl_Projet(Projet projet, Action<Projet> openProject)
+        public UserControl_Projet(Projet projet, Action<Projet> openProject, UserControl_ProjectLoaderAndCreater userControl_ProjectLoaderAndCreater)
         {
             InitializeComponent();
             Projet = projet;
             OpenProject = openProject;
-
+            UserControl_ProjectLoaderAndCreater = userControl_ProjectLoaderAndCreater;
             img_icon.Source = Utilities.Extensions.BitmapFromUri(new Uri(UserDataManager.ProjectsPath + projet.Path + @"\icon.png"));
 
             textBlock_nom.Text = projet.Name;
@@ -42,6 +42,8 @@ namespace Text_adventure_maker.ProjectManager
 
         public Projet Projet { get; }
         public Action<Projet> OpenProject { get; }
+        public UserControl_ProjectLoaderAndCreater UserControl_ProjectLoaderAndCreater { get; } // parent
+        public GameWindow GameWindow { get; }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
@@ -65,6 +67,7 @@ namespace Text_adventure_maker.ProjectManager
                     UserDataManager.UserData.Projets.RemoveAt(UserDataManager.UserData.Projets.IndexOf(Projet));
                     UserDataManager.UserData.Projets.Insert(0, projectToPlaceOnTop);
 
+                    UserControl_ProjectLoaderAndCreater.Visibility = Visibility.Collapsed;
                     OpenProject(Projet);
                 }
             };
@@ -74,18 +77,19 @@ namespace Text_adventure_maker.ProjectManager
         {
             if(e.LeftButton == MouseButtonState.Pressed)
             {
-                UserControl_GameMaker._UserControl_GameMaker.Grid_message.Children.Add(new Utilities.UserControl_YesNo("Êtes-vous sûre de vouloir supprimer définitivement \"" + Projet.Name + "\" ?", () =>
+                GameWindow._GameWindow.Grid_Message.Children.Add(new UserControl_YesNo("Êtes-vous sûre de vouloir supprimer définitivement \"" + Projet.Name + "\" ?", () =>
                 {
                     // delete le projet
                     img_icon.Source = null;
-                    Directory.Delete(UserDataManager.ProjectsPath + Projet.Path, true); 
+                    Directory.Delete(UserDataManager.ProjectsPath + Projet.Path, true);
                     UserDataManager.UserData.Projets.Remove(Projet);
                     this.Visibility = Visibility.Collapsed;
 
+                    UserControl_ProjectLoaderAndCreater.Visibility = Visibility.Visible;
                 }, () =>
                 {
-
-                }));
+                    UserControl_ProjectLoaderAndCreater.Visibility = Visibility.Visible;
+                }, UserControl_ProjectLoaderAndCreater));
             }
         }
     }
