@@ -35,8 +35,8 @@ namespace Text_Adventure_Game.Utilities.Blueprint_extensions
 
             Canvas.RenderTransform = transformGroup;
 
-            canvas.PreviewMouseDown += Canvas_PreviewMouseDown;
-            canvas.PreviewMouseUp += Canvas_PreviewMouseUp;
+            canvas.PreviewMouseLeftButtonDown += Canvas_PreviewMouseDown;
+            canvas.PreviewMouseLeftButtonUp += Canvas_PreviewMouseUp;
             canvas.PreviewMouseMove += Canvas_PreviewMouseMove;
             canvas.MouseWheel += Canvas_MouseWheel;
         }

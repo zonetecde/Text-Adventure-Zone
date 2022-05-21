@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Imaging;
@@ -70,14 +71,24 @@ namespace Text_Adventure_Game.Text_Adventure_Maker.Project_Manager
                 Name = textBox_gameName.Text.Trim(),
                 CreationDate = DateTime.Now,
                 Description = richTextBox_description.Text,
-                Path = textBox_gameName.Text.Trim()
+                Path = textBox_gameName.Text.Trim(),
+                FonctionElements = new List<FonctionElement>()
+                {
+                    new FonctionElement()
+                    {
+                        Id = 0,
+                        Left = 100,
+                        Top = 100
+                    }
+                }
             };
 
             // Créer le dossier du projet
             Directory.CreateDirectory(UserDataManager.ProjectsPath + projet.Path);
 
             // Créer le fichier blueprint du projet
-            File.WriteAllText(UserDataManager.ProjectsPath + projet.Path + @"\blueprint.taz", "");
+            // Ajoute une fonction au blueprint : celle du start
+            File.WriteAllText(UserDataManager.ProjectsPath + projet.Path + @"\blueprint.taz", JsonConvert.SerializeObject(new List<FonctionElement>() { new FonctionElement() { Id = 0, Left = 100, Top = 100 } }));
 
             // Si l'image du projet et celle par défaut on la prend des Properties.Resources, Sinon prend l'image importé
             if (textBlock_imagePath.Text.Equals("default.png"))

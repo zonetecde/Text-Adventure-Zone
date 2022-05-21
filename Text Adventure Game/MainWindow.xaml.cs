@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Text_Adventure_Game.Classes;
+using Text_Adventure_Game.Text_Adventure_Maker.Blueprint.Fonction;
 using Text_Adventure_Game.Text_Adventure_Maker.Project_Manager;
 
 namespace Text_Adventure_Game
@@ -78,7 +81,24 @@ namespace Text_Adventure_Game
             SetupBlueprint();
 
             // Ouvre le projet
+            foreach (FonctionElement fonctionElement in JsonConvert.DeserializeObject<List<FonctionElement>>( File.ReadAllText(UserDataManager.ProjectsPath + projet.Path + @"\blueprint.taz")))
+            {
+                UIElement uIElement = new UIElement();
 
+                // Ajoute la fonction au blueprint
+                switch(fonctionElement.Id)
+                {
+                    case 0:
+                        // Fonction : WhenGameStart
+                        uIElement = new UserControl_WhenGameStart();
+                        break;
+                }
+
+                Canvas_Blueprint.Children.Add(uIElement);
+
+                Canvas.SetTop(uIElement, fonctionElement.Top);
+                Canvas.SetLeft(uIElement, fonctionElement.Left);
+            }
         }
 
         private void SetupBlueprint()
