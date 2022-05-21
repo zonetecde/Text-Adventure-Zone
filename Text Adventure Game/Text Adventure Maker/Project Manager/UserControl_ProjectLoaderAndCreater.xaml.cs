@@ -43,7 +43,7 @@ namespace Text_Adventure_Game.Text_Adventure_Maker.Project_Manager
                 if (!String.IsNullOrEmpty(textBox_gameName.Text) && Utilities.Extensions.DoNotContainTheses(textBox_gameName.Text, new List<char>()
                 {
                     '/', '\\', ':', '?', '"', '<', '>', '|'
-                }) && !UserDataManager.UserData.Projets.Any(x => x.Name.Equals(textBox_gameName.Text)))
+                }) && !UserDataManager.UserData.Projets.Any(x => x.Name.Equals(textBox_gameName.Text.Trim())))
                 {
                     // Le nom du jeu est correct, enlève de l'effet
                     textBox_gameName.Background = richTextBox_description.Background;
@@ -67,14 +67,17 @@ namespace Text_Adventure_Game.Text_Adventure_Maker.Project_Manager
             // Ajout du projet
             Projet projet = new Projet()
             {
-                Name = textBox_gameName.Text,
+                Name = textBox_gameName.Text.Trim(),
                 CreationDate = DateTime.Now,
                 Description = richTextBox_description.Text,
-                Path = textBox_gameName.Text
+                Path = textBox_gameName.Text.Trim()
             };
 
             // Créer le dossier du projet
             Directory.CreateDirectory(UserDataManager.ProjectsPath + projet.Path);
+
+            // Créer le fichier blueprint du projet
+            File.WriteAllText(UserDataManager.ProjectsPath + projet.Path + @"\blueprint.taz", "");
 
             // Si l'image du projet et celle par défaut on la prend des Properties.Resources, Sinon prend l'image importé
             if (textBlock_imagePath.Text.Equals("default.png"))

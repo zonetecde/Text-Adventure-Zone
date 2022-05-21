@@ -24,6 +24,9 @@ namespace Text_Adventure_Game
     {
         public static GameWindow _GameWindow { get; private set; }
 
+        // Blueprint
+        Utilities.Blueprint_extensions.MovingAround movingAroundExtension = new Utilities.Blueprint_extensions.MovingAround();
+
         public GameWindow()
         {
             InitializeComponent();
@@ -71,7 +74,16 @@ namespace Text_Adventure_Game
 
         private void OpenProject(Projet projet)
         {
+            // Setup l'environnement 
+            SetupBlueprint();
+
             // Ouvre le projet
+
+        }
+
+        private void SetupBlueprint()
+        {
+            movingAroundExtension.MovingAroundInit(Canvas_Blueprint, Grid_BlueprintParent);
         }
 
         private void CloseSettingsButton_MouseDown(object sender, MouseButtonEventArgs e)
@@ -85,6 +97,14 @@ namespace Text_Adventure_Game
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             UserDataManager.SaveData();
+        }
+
+        private void MenuItem_MeRecentrer_Click(object sender, RoutedEventArgs e)
+        {
+            // Lorsqu'on est sur le blueprint d'un jeu et qu'on se perd (= on voit que du noir) permet de recentrer
+            (this.Canvas_Blueprint.RenderTransform as TransformGroup).Children[1] = new TranslateTransform(0, 0);
+            (this.Canvas_Blueprint.RenderTransform as TransformGroup).Children[0] = new MatrixTransform();
+            movingAroundExtension._currentTT = new TranslateTransform(0, 0);
         }
     }
 }

@@ -4,6 +4,7 @@
              xmlns:local="clr-namespace:Text_Adventure_Game"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
+
         <Style x:Key="FocusVisual">
             <Setter Property="Control.Template">
                 <Setter.Value>
