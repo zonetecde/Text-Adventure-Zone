@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Text_Adventure_Game.Utilities.Blueprint_extensions;
 
 namespace Text_Adventure_Game.Text_Adventure_Maker.Blueprint.Fonction
 {
@@ -23,6 +24,17 @@ namespace Text_Adventure_Game.Text_Adventure_Maker.Blueprint.Fonction
         public UserControl_WhenGameStart()
         {
             InitializeComponent();
+        }
+
+        private void UserControl_Initialized(object sender, EventArgs e)
+        {
+            MovingAround movingAround = new MovingAround();
+            movingAround.MovingAroundFonctionInit(this);
+        }
+
+        private void Image_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            MessageBox.Show(Canvas.GetLeft(this).ToString());
         }
     }
 }

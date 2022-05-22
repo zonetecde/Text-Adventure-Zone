@@ -10,7 +10,7 @@
         <ImageBrush ImageSource="resources/game_menu_background.jpg"/>
     </Window.Background>
 
-    <Grid>
+    <Grid >
         <Grid x:Name="Grid_MainMenu" Visibility="Visible">
             <Image Source="resources/settings.png" VerticalAlignment="Bottom" Margin="10,0,0,10" HorizontalAlignment="Left" Width="50" Cursor="Hand" MouseDown="Image_Settings_MouseDown"/>
 
@@ -25,7 +25,7 @@
                         <ImageBrush ImageSource="resources/wood3.jpg" Stretch="UniformToFill" TileMode="Tile"/>
                     </Border.Background>
 
-                    <Button Cursor="Hand" Style="{DynamicResource ButtonStyle_Menu}" Background="Transparent" BorderBrush="#00707070" Content="JOUER" FontFamily="Comic Sans MS" FontSize="40" >
+                    <Button FocusVisualStyle="{x:Null}" Cursor="Hand" Style="{DynamicResource ButtonStyle_Menu}" Background="Transparent" BorderBrush="#00707070" Content="JOUER" FontFamily="Comic Sans MS" FontSize="40" >
 
 
 
@@ -46,7 +46,7 @@
                         <ImageBrush ImageSource="resources/wood3.jpg" Stretch="UniformToFill" TileMode="Tile"/>
                     </Border.Background>
 
-                    <Button Cursor="Hand" Style="{DynamicResource ButtonStyle_Menu}" Background="Transparent" BorderBrush="#00707070" Content="CRÉER" FontFamily="Comic Sans MS" FontSize="40" Click="Button_Créer_Click" >
+                    <Button FocusVisualStyle="{x:Null}" Cursor="Hand" Style="{DynamicResource ButtonStyle_Menu}" Background="Transparent" BorderBrush="#00707070" Content="CRÉER" FontFamily="Comic Sans MS" FontSize="40" Click="Button_Créer_Click" >
                         <Button.Foreground>
                             <ImageBrush ImageSource="/resources/wood2.jpg"/>
                         </Button.Foreground>

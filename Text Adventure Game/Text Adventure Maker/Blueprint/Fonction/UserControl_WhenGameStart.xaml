@@ -5,11 +5,11 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Text_Adventure_Game.Text_Adventure_Maker.Blueprint.Fonction"
              mc:Ignorable="d" 
-             Width="400" Height="100">
+             Width="400" Height="100" Initialized="UserControl_Initialized" >
     <Border Background="#FF19405A" CornerRadius="20,20,20,20" BorderThickness="2,2,2,2" BorderBrush="Black">
         <Grid>
             <Label Content="Quand le jeu commence" FontSize="27" Foreground="White"  HorizontalAlignment="Left" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="10,0,0,0"/>
-            <Image Source="resources/arrow.png" Margin="333,0,0,0" OpacityMask="Black" VerticalAlignment="Center" HorizontalAlignment="Left" Cursor="Hand"/>
+            <Image Source="resources/arrow.png" Margin="333,0,0,0" OpacityMask="Black" VerticalAlignment="Center" HorizontalAlignment="Left" Cursor="Hand" MouseDown="Image_MouseDown"/>
         </Grid>
     </Border>
 </UserControl>

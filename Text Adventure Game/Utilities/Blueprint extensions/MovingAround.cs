@@ -23,9 +23,9 @@ namespace Text_Adventure_Game.Utilities.Blueprint_extensions
 
         private TransformGroup transformGroup = new TransformGroup();
 
-        
+        private UIElement controlToMOVE;
 
-        public void MovingAroundInit(Canvas canvas, Grid canvasParent)
+        public void MovingAroundCanvasInit(Canvas canvas, Grid canvasParent)
         {
             this.Canvas = canvas;
             WholeBlueprint = canvasParent;
@@ -41,6 +41,81 @@ namespace Text_Adventure_Game.Utilities.Blueprint_extensions
             canvas.MouseWheel += Canvas_MouseWheel;
         }
 
+        public void MovingAroundFonctionInit(UIElement control)
+        {
+            controlToMOVE = control;
+            controlToMOVE.MouseLeftButtonDown += new MouseButtonEventHandler(Control_MouseLeftButtonDown);
+            controlToMOVE.MouseLeftButtonUp += new MouseButtonEventHandler(Control_MouseLeftButtonUp);
+            controlToMOVE.MouseMove += new MouseEventHandler(Control_MouseMove);
+        }
+
+        protected bool isDragging;
+        private Point clickPosition;
+
+        private void Control_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if (!(e.OriginalSource is Image))
+            {
+                isDragging = true;
+                var draggableControl = sender as UserControl;
+                clickPosition = e.GetPosition(controlToMOVE);
+                draggableControl.CaptureMouse();
+            }
+            
+        }
+
+        private void Control_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            isDragging = false;
+            var draggable = sender as UserControl;
+            draggable.ReleaseMouseCapture();
+        }
+
+        private void Control_MouseMove(object sender, MouseEventArgs e)
+        {
+            var draggableControl = sender as UserControl;
+
+            if (isDragging && draggableControl != null)
+            {
+                Point currentPosition = e.GetPosition((controlToMOVE as UserControl).Parent as UIElement);
+
+                var transform = draggableControl.RenderTransform as TranslateTransform;
+                if (transform == null)
+                {
+                    transform = new TranslateTransform();
+                    draggableControl.RenderTransform = transform;
+                }
+
+                if (Canvas.GetLeft(controlToMOVE) >= 0 && Canvas.GetLeft(controlToMOVE) <= 5000 - (controlToMOVE as UserControl).Width)
+                    Canvas.SetLeft(controlToMOVE, currentPosition.X - clickPosition.X);
+                else
+                {
+                    if (Canvas.GetLeft(controlToMOVE) < 0)
+                        Canvas.SetLeft(controlToMOVE, 0);
+                    else
+                        Canvas.SetLeft(controlToMOVE, 5000 - (controlToMOVE as UserControl).Width); 
+                    
+                    isDragging = false;
+                }
+
+
+                if (Canvas.GetTop(controlToMOVE) >= 0 && Canvas.GetTop(controlToMOVE) <= 5000 - (controlToMOVE as UserControl).Height)
+                    Canvas.SetTop(controlToMOVE, currentPosition.Y - clickPosition.Y);
+
+                else
+                {
+                    if(Canvas.GetTop(controlToMOVE) < 0)
+                        Canvas.SetTop(controlToMOVE, 0);
+                    else
+                        Canvas.SetTop(controlToMOVE, 5000 - (controlToMOVE as UserControl).Height);
+
+                    isDragging = false;
+                }
+
+
+            }
+        }
+
         private void Canvas_MouseWheel(object sender, MouseWheelEventArgs e)
         {
             var position = e.GetPosition(Canvas);
@@ -54,12 +129,15 @@ namespace Text_Adventure_Game.Utilities.Blueprint_extensions
 
         private void Canvas_PreviewMouseDown(object sender, MouseButtonEventArgs e)
         {
-            if (_buttonPosition == null)
-                _buttonPosition = Canvas.TransformToAncestor(WholeBlueprint).Transform(new Point(0, 0));
-            var mousePosition = Mouse.GetPosition(WholeBlueprint);
-            deltaX = mousePosition.X - _buttonPosition.Value.X;
-            deltaY = mousePosition.Y - _buttonPosition.Value.Y;
-            _isMoving = true;
+            if (e.OriginalSource is Canvas)
+            {
+                if (_buttonPosition == null)
+                    _buttonPosition = Canvas.TransformToAncestor(WholeBlueprint).Transform(new Point(0, 0));
+                var mousePosition = Mouse.GetPosition(WholeBlueprint);
+                deltaX = mousePosition.X - _buttonPosition.Value.X;
+                deltaY = mousePosition.Y - _buttonPosition.Value.Y;
+                _isMoving = true;
+            }
         }
 
         private void Canvas_PreviewMouseUp(object sender, MouseButtonEventArgs e)

@@ -103,7 +103,7 @@ namespace Text_Adventure_Game
 
         private void SetupBlueprint()
         {
-            movingAroundExtension.MovingAroundInit(Canvas_Blueprint, Grid_BlueprintParent);
+            movingAroundExtension.MovingAroundCanvasInit(Canvas_Blueprint, Grid_BlueprintParent);
         }
 
         private void CloseSettingsButton_MouseDown(object sender, MouseButtonEventArgs e)
