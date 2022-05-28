@@ -16,6 +16,7 @@
     <None Remove="game_menu_background.jpg" />
     <None Remove="red-close-icon-40.png" />
     <None Remove="settings.png" />
+    <None Remove="Text Adventure Maker\Blueprint\Fonction\arrow_entree.png" />
     <None Remove="Text Adventure Maker\Blueprint\Fonction\resources\arrow.png" />
     <None Remove="Text Adventure Maker\Project Manager\trash.png" />
     <None Remove="Text Adventure Maker\resources\default.jpg" />
@@ -36,6 +37,7 @@
   <ItemGroup>
     <Resource Include="resources\add.png" />
     <Resource Include="resources\close.png" />
+    <Resource Include="Text Adventure Maker\Blueprint\Fonction\resources\arrow_entree.png" />
     <Resource Include="Text Adventure Maker\Blueprint\Fonction\resources\arrow.png" />
     <Resource Include="Text Adventure Maker\Project Manager\resources\trash.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>

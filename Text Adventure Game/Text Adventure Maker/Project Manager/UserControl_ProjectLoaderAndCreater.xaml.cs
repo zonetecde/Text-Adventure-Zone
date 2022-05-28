@@ -26,13 +26,15 @@ namespace Text_Adventure_Game.Text_Adventure_Maker.Project_Manager
     /// </summary>
     public partial class UserControl_ProjectLoaderAndCreater : UserControl
     {
-        public Action<Projet> OpenProject { get; }
+        public Action<RecentlyOpenedProject> OpenProject { get; }
         public GameWindow GameWindow { get; }
 
-        public UserControl_ProjectLoaderAndCreater(Action<Projet> openProject)
+        public UserControl_ProjectLoaderAndCreater(Action<RecentlyOpenedProject> openProject)
         {
             InitializeComponent();
             OpenProject = openProject;
+
+
 
             // Affiche l'image du projet par défaut pour en créer un.
             image_GameIcon.Source = Utilities.Extensions.ImageSourceFromBitmap(new Bitmap(Properties.Resources.defaultIcon));
@@ -44,7 +46,7 @@ namespace Text_Adventure_Game.Text_Adventure_Maker.Project_Manager
                 if (!String.IsNullOrEmpty(textBox_gameName.Text) && Utilities.Extensions.DoNotContainTheses(textBox_gameName.Text, new List<char>()
                 {
                     '/', '\\', ':', '?', '"', '<', '>', '|'
-                }) && !UserDataManager.UserData.Projets.Any(x => x.Name.Equals(textBox_gameName.Text.Trim())))
+                }) && !UserDataManager.UserData.RecentlyOpenedProjects.Any(x => x.ProjectName.Equals(textBox_gameName.Text.Trim())))
                 {
                     // Le nom du jeu est correct, enlève de l'effet
                     textBox_gameName.Background = richTextBox_description.Background;
@@ -66,21 +68,13 @@ namespace Text_Adventure_Game.Text_Adventure_Maker.Project_Manager
             // Pour rappel ce bouton n'est accessible uniquement si le nom du projet et unique et ne contient aucun caractère interdit, voir textBox_gameName.TextChanged dans le constructeur
 
             // Ajout du projet
-            Projet projet = new Projet()
+            ProjectProperties projet = new ProjectProperties()
             {
                 Name = textBox_gameName.Text.Trim(),
                 CreationDate = DateTime.Now,
                 Description = richTextBox_description.Text,
                 Path = textBox_gameName.Text.Trim(),
-                FonctionElements = new List<FonctionElement>()
-                {
-                    new FonctionElement()
-                    {
-                        Id = 0,
-                        Left = 100,
-                        Top = 100
-                    }
-                }
+                TotalIdIncrementation = 1
             };
 
             // Créer le dossier du projet
@@ -89,6 +83,8 @@ namespace Text_Adventure_Game.Text_Adventure_Maker.Project_Manager
             // Créer le fichier blueprint du projet
             // Ajoute une fonction au blueprint : celle du start
             File.WriteAllText(UserDataManager.ProjectsPath + projet.Path + @"\blueprint.taz", JsonConvert.SerializeObject(new List<FonctionElement>() { new FonctionElement() { Id = 0, Left = 100, Top = 100 } }));
+            File.WriteAllText(UserDataManager.ProjectsPath + projet.Path + @"\connexion.taz", JsonConvert.SerializeObject(new List<Connexion>() { }));
+            File.WriteAllText(UserDataManager.ProjectsPath + projet.Path + @"\projectprop.taz", JsonConvert.SerializeObject(projet));
 
             // Si l'image du projet et celle par défaut on la prend des Properties.Resources, Sinon prend l'image importé
             if (textBlock_imagePath.Text.Equals("default.png"))
@@ -98,11 +94,16 @@ namespace Text_Adventure_Game.Text_Adventure_Maker.Project_Manager
                 Utilities.Extensions.BitmapImage2Bitmap(image_GameIcon.Source as BitmapImage).Save(UserDataManager.ProjectsPath + projet.Path + @"\icon.png", ImageFormat.Png);
 
             // Ajoute le projet en haut de la liste des projets déjà existant
-            UserDataManager.UserData.Projets.Insert(0, projet);
+            UserDataManager.UserData.RecentlyOpenedProjects.Insert(0, new RecentlyOpenedProject()
+            {
+                ProjectDesc = projet.Description,
+                ProjectName = projet.Name,
+                ProjectPath = projet.Path
+            });
 
             // Ferme le sélecteur de projet puis ouvre le projet
             this.Visibility = Visibility.Hidden;
-            OpenProject(projet);
+            OpenProject(UserDataManager.UserData.RecentlyOpenedProjects[0]);
                 
 
         }
@@ -136,7 +137,7 @@ namespace Text_Adventure_Game.Text_Adventure_Maker.Project_Manager
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
             // Affiche les projets
-            foreach(Projet projet in UserDataManager.UserData.Projets)
+            foreach(RecentlyOpenedProject projet in UserDataManager.UserData.RecentlyOpenedProjects)
             {
                 StackPanel_projets.Children.Add(new UserControl_Projet(projet, OpenProject, this));
             }

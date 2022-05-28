@@ -23,7 +23,7 @@ namespace Text_Adventure_Game.Classes
             {
                 UserData = new UserData()
                 {
-                    Projets = new List<Projet>()
+                    RecentlyOpenedProjects = new List<RecentlyOpenedProject>()
                 };
 
                 File.WriteAllText(DataPath, JsonConvert.SerializeObject(UserData));
@@ -35,11 +35,50 @@ namespace Text_Adventure_Game.Classes
         public static void LoadData()
         {
             UserData = JsonConvert.DeserializeObject<UserData>(File.ReadAllText(DataPath));
+
+            // Check si tous les projets sont là
+            foreach(string directory in Directory.GetDirectories(ProjectsPath))
+            {
+                string dName = new DirectoryInfo(directory).Name;
+                if (!UserData.RecentlyOpenedProjects.Any(x => x.ProjectName.Equals(dName)))
+                {
+                    // Le projet existe pas alors qu'il est dans le dossier projet
+                    ProjectProperties projectProperties = JsonConvert.DeserializeObject<ProjectProperties>(File.ReadAllText(ProjectsPath + dName + @"\projectprop.taz"));
+                    UserData.RecentlyOpenedProjects.Add(new RecentlyOpenedProject()
+                    {
+                        ProjectDesc = projectProperties.Description,
+                        ProjectName = projectProperties.Name,
+                        ProjectPath = projectProperties.Name,
+                    });
+                }
+
+                List<RecentlyOpenedProject> toDelete = new List<RecentlyOpenedProject>();
+                foreach(var project in UserData.RecentlyOpenedProjects)
+                {
+                    string[] a = Directory.GetDirectories(ProjectsPath);
+
+                    if (!a.Any(x => new DirectoryInfo(x).Name.Equals(project.ProjectName)))
+                    {
+                        // Un projet enregistré n'existe plus
+                        toDelete.Add(project);
+                    }
+                }
+
+                toDelete.ForEach(x => UserData.RecentlyOpenedProjects.Remove(x));
+            }
+
+            SaveData();
         }
 
         public static void SaveData()
         {
             File.WriteAllText(DataPath, JsonConvert.SerializeObject(UserData));
+
+            if(GameWindow._GameWindow.OpenedProject != null)
+            {
+                File.WriteAllText(UserDataManager.ProjectsPath + GameWindow._GameWindow.ProjectProperties.Path + @"\blueprint.taz", JsonConvert.SerializeObject(GameWindow._GameWindow.FonctionElementsOpenedProject));
+                File.WriteAllText(UserDataManager.ProjectsPath + GameWindow._GameWindow.ProjectProperties.Path + @"\connexion.taz", JsonConvert.SerializeObject(GameWindow._GameWindow.ConnexionElementsOpenedProject));
+            }
         }
     }
 }

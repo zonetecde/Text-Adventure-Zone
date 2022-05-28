@@ -25,6 +25,10 @@ namespace Text_Adventure_Game.Utilities.Blueprint_extensions
 
         private UIElement controlToMOVE;
 
+        private Image imgEntree;
+        private Image imgSortie;
+
+
         public void MovingAroundCanvasInit(Canvas canvas, Grid canvasParent)
         {
             this.Canvas = canvas;
@@ -41,8 +45,11 @@ namespace Text_Adventure_Game.Utilities.Blueprint_extensions
             canvas.MouseWheel += Canvas_MouseWheel;
         }
 
-        public void MovingAroundFonctionInit(UIElement control)
+        public void MovingAroundFonctionInit(UIElement control, Image img_entree, Image img_sortie)
         {
+            imgEntree = img_entree;
+            imgSortie = img_sortie;
+
             controlToMOVE = control;
             controlToMOVE.MouseLeftButtonDown += new MouseButtonEventHandler(Control_MouseLeftButtonDown);
             controlToMOVE.MouseLeftButtonUp += new MouseButtonEventHandler(Control_MouseLeftButtonUp);
@@ -112,7 +119,10 @@ namespace Text_Adventure_Game.Utilities.Blueprint_extensions
                     isDragging = false;
                 }
 
-
+                if (imgEntree != null)
+                {
+                    //foreach()
+                }
             }
         }
 

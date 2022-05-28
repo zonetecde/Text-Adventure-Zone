@@ -1,0 +1,16 @@
+﻿<UserControl x:Class="Text_Adventure_Game.Text_Adventure_Maker.Blueprint.Fonction.UserControl_TexteAvecChoix"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Text_Adventure_Game.Text_Adventure_Maker.Blueprint.Fonction"
+             mc:Ignorable="d" 
+             Width="550" Height="230" Initialized="UserControl_Initialized" Loaded="UserControl_Loaded" >
+    <Border Background="#FF19405A" CornerRadius="20,20,20,20" BorderThickness="2,2,2,2" BorderBrush="Black">
+        <Grid>
+            <Label Content="Du texte avec du choix" FontSize="27" Foreground="White"  HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+            <Image x:Name="Image_Arrow" Source="resources/arrow.png" Margin="473,0,0,0" OpacityMask="Black" VerticalAlignment="Center" HorizontalAlignment="Left" Cursor="Hand" MouseDown="Image_MouseDown" Width="63" Height="63"/>
+            <Image x:Name="Image_ArrowEntrée" Source="resources/arrow_entree.png" OpacityMask="Black" VerticalAlignment="Center" HorizontalAlignment="Left" Cursor="Hand" MouseDown="Image_MouseDown" Width="63" Height="62" Margin="10,0,0,0"/>
+        </Grid>
+    </Border>
+</UserControl>

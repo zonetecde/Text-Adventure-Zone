@@ -66,7 +66,7 @@
             <Grid x:Name="Grid_BlueprintParent">
 
                 
-                <Canvas Width="5000" Height="5000" x:Name="Canvas_Blueprint">
+                <Canvas Width="5000" Height="5000" x:Name="Canvas_Blueprint" MouseUp="Canvas_Blueprint_MouseUp" MouseMove="Canvas_Blueprint_MouseMove" >
                     <Canvas.Background>
                         <VisualBrush TileMode="Tile"
             Viewport="0,0,50,50" ViewportUnits="Absolute" 

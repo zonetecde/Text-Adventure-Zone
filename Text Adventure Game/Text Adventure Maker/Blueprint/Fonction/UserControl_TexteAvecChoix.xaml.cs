@@ -18,19 +18,26 @@ using Text_Adventure_Game.Utilities.Blueprint_extensions;
 namespace Text_Adventure_Game.Text_Adventure_Maker.Blueprint.Fonction
 {
     /// <summary>
-    /// Logique d'interaction pour UserControl_WhenGameStart.xaml
+    /// Logique d'interaction pour UserControl_TexteAvecChoix.xaml
     /// </summary>
-    public partial class UserControl_WhenGameStart : UserControl
+    public partial class UserControl_TexteAvecChoix : UserControl
     {
-        public UserControl_WhenGameStart()
+        public Line Connexion { get; }
+
+        public UserControl_TexteAvecChoix(Line connexion = null)
         {
+            Connexion = connexion;
+
             InitializeComponent();
         }
 
         private void UserControl_Initialized(object sender, EventArgs e)
         {
             MovingAround movingAround = new MovingAround();
-            movingAround.MovingAroundFonctionInit(this, null, img_arrow);
+            movingAround.MovingAroundFonctionInit(this,Image_ArrowEntrée , Image_Arrow);
+
+
+
         }
 
         private void Image_MouseDown(object sender, MouseButtonEventArgs e)
@@ -38,5 +45,13 @@ namespace Text_Adventure_Game.Text_Adventure_Maker.Blueprint.Fonction
             // Ligne pour connecter 2 élements
             DrawConnection.DrawNewLine(sender, (this.Tag as FonctionTag).IdOnBlueprint);
         }
+
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            // Connexion jusqu'à la flèche
+            Utilities.Blueprint_extensions.ConnexionExtension.SetTheConnexion(Connexion, Image_ArrowEntrée);
+        }
+
+
     }
 }
